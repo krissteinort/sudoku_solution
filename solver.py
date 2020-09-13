@@ -12,18 +12,22 @@ board = [
 [2, 8, 0, 0, 0, 6, 0, 0, 3]
 ]
 
+
+
+try_count = []
+
 def solve(bo):
   print(bo)
   find = find_empty_square(bo)
+  
   if not find:
     return True
   else:
     row, col = find
-  
   for i in range(1,10):
     if valid(bo, i, (row,col)):
       bo[row][col] = i
-
+      try_count.append(bo)
       if solve(bo):
         return True
 
@@ -89,3 +93,5 @@ solve(board)
 print("___________________________")
 print("Completed Board")
 print_board(board)
+print("Number of tries for success: {}".format(len(try_count)))
+
